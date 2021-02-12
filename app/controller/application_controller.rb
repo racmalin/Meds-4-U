@@ -5,4 +5,9 @@ class ApplicationController < Sinatra::Base
         erb :index
     end
 
+    post '/medications' do
+        @medication = params["medication"]
+        erb :medication
+    end
+
 end
