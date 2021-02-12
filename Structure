@@ -1,0 +1,7 @@
+ post '/medications' do
+        @medication = params["medication"]
+        erb :"medications/index"
+
+For Show route
+@medication = Medication.create(name: params["name"], content: params["content"])
+       redirect "/medications/#{@medication.id}"

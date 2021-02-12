@@ -1,0 +1,3 @@
+class DiseaseStatesController < ApplicationController
+
+end
