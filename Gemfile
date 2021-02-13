@@ -14,6 +14,7 @@ gem "shotgun"
 gem "sqlite3"
 gem "require_all"
 gem "corneal"
+gem 'bcrypt'
 
 
 

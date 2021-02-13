@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
         erb :index
     end
 
-    get '/medications' do
+    post '/medications' do
         erb :"medications/index"
     end
 
