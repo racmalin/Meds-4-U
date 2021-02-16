@@ -15,7 +15,7 @@ class MedicationsController < ApplicationController
     end
     
     post '/medications' do
-        medication = Medication.create(title: params["title"], content: params["content"])
+        medication = Medication.create(name: params["name"], description: params["description"])
         redirect "/medications/#{medication.id}"
     end
 
