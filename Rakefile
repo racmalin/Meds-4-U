@@ -1,9 +1,7 @@
-require "./config/environment"
-require "sinatra/activerecord/rake"
+ENV["SINATRA_ENV"] ||= "development"
 
-task :env do
-    require "./config/environment"
-end
+require_relative './config/environment'
+require 'sinatra/activerecord/rake'
 
 task :console do
     Pry.start

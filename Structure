@@ -5,3 +5,19 @@
 For Show route
 @medication = Medication.create(name: params["name"], content: params["content"])
        redirect "/medications/#{@medication.id}"
+
+APPLICATION CONTROLLER 1st Draft
+
+class ApplicationController < Sinatra::Base
+    set :views, Proc.new {File.join(root, "../views")}
+
+    get '/' do
+        erb :index
+    end
+
+    post '/medications' do
+        erb :"medications/index"
+    end
+
+    
+end
