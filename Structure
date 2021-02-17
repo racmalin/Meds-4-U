@@ -21,3 +21,6 @@ class ApplicationController < Sinatra::Base
 
     
 end
+
+*From environment.rb file
+# require './app/controller/application_controller'
