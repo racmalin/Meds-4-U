@@ -9,12 +9,13 @@ gem "rake"
 gem "rack"
 gem "sinatra"
 gem "activerecord"
-gem "sinatra-activerecord"
+gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem "shotgun"
 gem "sqlite3"
 gem "require_all"
 gem "corneal"
 gem 'bcrypt'
+gem 'tux'
 
 
 
