@@ -1,7 +1,10 @@
-<h2>medications</h2>
+<h2>Medications</h2>
+
+<h2><a href="/medications/new">List Medications</a></h2><br>
+
 <ul>
-    <% @medications.each do |n| %>
-        <li><%= n.name %></li>
+    <% @medications.each do |m| %>
+        <li><%= m.name %></li>
     <% end %>
 
 
