@@ -10,8 +10,12 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "mysessionsecretpassword"
   end
 
-  get "/" do
+  get '/' do
     erb :index
+  end
+
+  post 'medications' do
+    erb :"medications/index"
   end
 
   private

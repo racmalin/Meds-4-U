@@ -14,7 +14,7 @@ class MedicationsController < ApplicationController
         erb :"medications/show"
     end
     
-    post '/medications' do
+    post '/medications/new' do
         medication = Medication.create(name: params["name"], description: params["description"])
         redirect "/medications/#{medication.id}"
     end
