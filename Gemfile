@@ -16,6 +16,6 @@ gem "require_all"
 gem "corneal"
 gem 'bcrypt'
 gem 'tux'
-
+gem "rails"
 
 
