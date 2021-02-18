@@ -1,0 +1,3 @@
+class UserMedicationsController < ApplicationController
+
+end
