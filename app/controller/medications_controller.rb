@@ -1,40 +1,30 @@
 class MedicationsController < ApplicationController
    
-    get '/medications' do
-        @medications = Medication.all
-        erb :"medication/index"
+    get "/medications" do
+        require_login
+        user = User.find_by_id(session[:user_id])
+        @medications = user.medications
+        erb :"/medications/index"                                           
+      end
+
+    get "/medications/new" do
+      require_login
+      @medications = Medication.all
+      erb :"/medications/new"
     end
 
-    get '/medications/new' do
-        erb :"medications/new"
-     end
-
-    get '/medications/:id' do
-        @medications = Medication.find_by(id: params[:id])
-        erb :"medications/show"
+    post "/medications" do 
+        params[:name].delete_if{|m| m == " "}
+        @name = params[:name]
+        @medication = Medication.find_or_create_by(name: params[:description], user_id: session[:user_id])
+        params[:medication_ids].each do |m|
+          @medications.disease_states << Disease_State.find(m.to_i)
     end
-    
-    post '/medications/new' do
-        medication = Medication.create(name: params["name"], description: params["description"])
-        redirect "/medications/#{medication.id}"
     end
-
-    get '/medications/:id/edit' do
-        @medication = Medication.find_by(id: params[:id])
-        erb :"medications/edit"
-    end
-
-    patch '/medications/:id' do
-        medication = Medication.find_by(id: params[:id])
-        medication.update(title: params["title"], content: params["content"])
-        redirect "/medications/#{medication.id}"
-    end
-
-    delete '/medications/:id' do
-        medication = Medication.find_by(id: params[:id])
-        medication.delete
-        redirect "/medications"
-
-    end
-
+        # if @medication.create
+        #     redirect "/medications"
+        # else
+        #   @error = "Please list medication."
+        #   erb :"/medications/new"
+        # end
 end
