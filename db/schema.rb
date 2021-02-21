@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_043709) do
+ActiveRecord::Schema.define(version: 2021_02_21_034716) do
 
   create_table "disease_states", force: :cascade do |t|
     t.string "name"
     t.string "type"
     t.string "category"
+    t.integer "user_id"
+    t.integer "medication_id"
   end
 
   create_table "medications", force: :cascade do |t|
@@ -27,16 +29,9 @@ ActiveRecord::Schema.define(version: 2021_02_18_043709) do
     t.text "description"
   end
 
-  create_table "user_medications", force: :cascade do |t|
-    t.string "user_id"
-    t.string "medication_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password_disect"
+    t.string "password_digest"
     t.string "email"
   end
 

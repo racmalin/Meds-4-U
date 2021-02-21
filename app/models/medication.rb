@@ -1,5 +1,5 @@
-class Medications < ActiveRecord::Base
+class Medication < ActiveRecord::Base
     has_many :disease_states
-    belongs_to :users
+    has_many :users, through: :disease_state
 
 end
