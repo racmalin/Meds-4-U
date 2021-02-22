@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_030839) do
     t.string "name"
     t.string "med_type"
     t.string "brand"
+    t.integer "medication_id"
     t.integer "dose"
     t.integer "quantity"
     t.text "description"
