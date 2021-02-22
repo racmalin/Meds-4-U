@@ -1,7 +1,7 @@
 ENV['SINATRA_ENV'] ||= "development"
 
 require "bundler/setup"
-# require "rake"
+require "rake"
 
 Bundler.require(:default, ENV['SINATRA_ENV'])
 

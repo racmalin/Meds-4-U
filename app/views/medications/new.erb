@@ -1,7 +1,12 @@
-<form action="/medications" method="get">
-    <h2><%= "Medication" %></h2>
-        <input type="text" name="medications">
-            <h2><%= "Description" %></h2>
-                <input type="text" name="description">
-                <input type="submit" value="add">
+<form action="/medications" method="post">
+    <h2> Medication </h2>
+        <input type="text" name="name">
+    <h2> Description</h2>
+        <input type="text" name="description">
+    <h2> Disease State</h2>
+        <input type="text" name="disease_state">
+
+        <input type="hidden" name="user_id" value=<%=session[:user_id]%>>
+
+        <input type="submit" value="add">
 </form>

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
-    user = User.find_by(name: params[:name])
+    user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id     
       redirect "/medications"
@@ -21,8 +21,8 @@ class UsersController < ApplicationController
     erb :"/users/signup"
   end
   
-  post "/signup" do
-    @user = User.new(params)
+  post "/signup" do    
+    @user = User.new(params)    
     if @user.save
       session[:user_id] = @user.id     
       redirect "/medications"      

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_034716) do
+ActiveRecord::Schema.define(version: 2021_02_22_030839) do
 
   create_table "disease_states", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "disease_type"
     t.string "category"
     t.integer "user_id"
     t.integer "medication_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_034716) do
 
   create_table "medications", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "med_type"
     t.string "brand"
     t.integer "dose"
     t.integer "quantity"

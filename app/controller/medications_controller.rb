@@ -13,13 +13,9 @@ class MedicationsController < ApplicationController
       erb :"/medications/new"
     end
 
-    post "/medications" do 
-        params[:name].delete_if{|m| m == " "}
+    post "/medications" do        
         @name = params[:name]
-        @medication = Medication.find_or_create_by(name: params[:description], user_id: session[:user_id])
-        params[:medication_ids].each do |m|
-          @medications.disease_states << Disease_State.find(m.to_i)
-    end
+        @medication = Medication.find_or_create_by(name: params[:name], description: params[:description], disease_states: params[:disease_state], user_id: params[:user_id])
     end
         # if @medication.create
         #     redirect "/medications"
