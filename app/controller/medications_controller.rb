@@ -15,8 +15,8 @@ class MedicationsController < ApplicationController
 
     post "/medications" do        
         @name = params[:name]
-        @medication = Medication.find_or_create_by(name: params[:name], description: params[:description], 
-        disease_states: params[:disease_state], medications: params[:medication_id], user_id: params[:user_id])
+        @medications = Medication.create(name: params[:name], description: params[:description], 
+        disease_states: params[:disease_state], medication_id: params[:medication_id], user_id: params[:user_id])
       
     end
 

@@ -64,3 +64,12 @@ get '/medications' do
     end
 
 end
+
+POST ROUTE FOR MEDICATIONS(Relating Error)--ActiveRecord::StatementInvalid at /medications
+SQLite3::SQLException: no such column: medications.user_id: SELECT "medications".* FROM "medications" WHERE "medications"."name" = ? AND "medications"."description" = ?
+AND "medications"."id" = ? AND "medications"."medication_id" IS NULL AND "medications"."user_id" = ? LIMIT ?
+
+post "/medications" do        
+        @name = params[:name]
+        @medication = Medication.find_or_create_by(name: params[:name], description: params[:description], 
+        disease_states: params[:disease_state], medication_id: params[:medication_id], user_id: params[:user_id])

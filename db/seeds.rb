@@ -12,7 +12,7 @@ cancer = DiseaseState.create(name: 'cancer', disease_type: 'carcinoma', category
 
 
 # medications = [
-#     {name: 'med name', type: 'med type', brand: 'med brand', user: bob }
+#     {name: 'med name', med_type: 'med-type', brand: 'med brand', disease_state: '*' }
 # ]
 
 # medications.each do |m|
