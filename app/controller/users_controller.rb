@@ -5,16 +5,23 @@ class UsersController < ApplicationController
     erb :"/users/index"
   end
 
+
   post "/login" do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id     
       redirect "/medications"
-    else 
+    else
       @error = "Username or password is incorrect."
-      erb :"/users/index"
-    end     
-  end
+      erb :"/users/index"  
+    # else
+    #   @error = "Username or password not found, please sign up."
+    #   redirect "/users/signup"
+    end
+  end 
+  
+  
+
 
   
   get "/signup" do

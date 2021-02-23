@@ -14,9 +14,12 @@ class ApplicationController < Sinatra::Base
     erb :"users/index"
   end
 
+  
   post 'medications' do
     erb :"medications/index"
   end
+
+  
 
   private
 
