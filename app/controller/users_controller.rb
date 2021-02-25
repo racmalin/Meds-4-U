@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect "/medications"
     else
       @error = "Username or password is incorrect."
-      erb :"/users/index"  
+      erb :"/users/signup"  
     # else
     #   @error = "Username or password not found, please sign up."
     #   redirect "/users/signup"
