@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     
   get "/login" do
+    redirect_logged_in
     erb :"/users/index"
   end
 
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
       redirect "/medications"
     else
       @error = "Username or password is incorrect."
-      erb :"/users/signup"  
+      redirect "/login"  
     # else
     #   @error = "Username or password not found, please sign up."
     #   redirect "/users/signup"
@@ -25,17 +26,18 @@ class UsersController < ApplicationController
 
   
   get "/signup" do
+    redirect_logged_in
     erb :"/users/signup"
   end
   
   post "/signup" do    
-    @user = User.new(params)    
-    if @user.save
-      session[:user_id] = @user.id     
+    user = User.new(params)    
+    if user.save
+      session[:user_id] = user.id     
       redirect "/medications"      
     else 
-      @error = "Invalid or username already in use."
-      erb :"/users/signup"
+      flash[:error] = user.errors.full_messages.to_sentence
+        redirect '/signup'
     end
   end
 

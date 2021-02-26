@@ -17,5 +17,5 @@ gem "corneal"
 gem 'bcrypt'
 gem 'tux'
 gem "rails"
-
+gem "sinatra-flash"
 

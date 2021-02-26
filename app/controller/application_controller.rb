@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :method_override, true
     enable :sessions
     set :session_secret, "mysessionsecretpassword"
+    register Sinatra::Flash
   end
 
   get '/' do
@@ -28,13 +29,18 @@ class ApplicationController < Sinatra::Base
   end
 
   def current_user
-    User.find(session[:user_id])
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def require_login
     unless logged_in?
-      redirect '/signup'
+      redirect '/login'
+    end
+   end
+  
+   def redirect_logged_in
+    if logged_in?
+      redirect '/medications'
     end
   end
-
 end
