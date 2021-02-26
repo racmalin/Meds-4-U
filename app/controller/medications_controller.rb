@@ -16,7 +16,7 @@ class MedicationsController < ApplicationController
     end
 
     post "/medications" do    
-        
+        # binding.pry
         @medications = Medication.create(name: params[:name], description: params[:description], 
         disease_states_name: params[:disease_states_name], brand: params[:brand], dose: params[:dose], quantity: params[:quantity],
         medication_id: params[:medication_id])
