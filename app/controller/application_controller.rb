@@ -12,11 +12,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    require_login 
     erb :"users/login"
   end
 
   
   post 'medications' do
+    require_login 
     erb :"medications/index"
   end
 
