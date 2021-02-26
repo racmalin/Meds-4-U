@@ -18,18 +18,9 @@ class MedicationsController < ApplicationController
     post "/medications" do    
         
         @medications = Medication.create(name: params[:name], description: params[:description], 
-        disease_states_name: params[:disease_states_name], 
+        disease_states_name: params[:disease_states_name], brand: params[:brand], dose: params[:dose], quantity: params[:quantity],
         medication_id: params[:medication_id])
         @medications.users << User.find_by_id(params[:user_id].to_i)
         redirect "/medications"
     end
-
-
-
-        # if @medication.create
-        #     redirect "/medications"
-        # else
-        #   @error = "Please list medication."
-        #   erb :"/medications/new"
-        # end
 end
