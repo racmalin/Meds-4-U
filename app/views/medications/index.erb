@@ -4,10 +4,10 @@
 
 <ul>
     <% @medications.each do |m| %>
-        <li><%= m.name %></li>
+        <li>Pill name<%= m.name %></li>
         <li><%= m.description %></li>
-        <li><%= m.disease_states %></li>
-    <% end %>
+        <li><%= m.disease_states_name %></li><br>
+    <% end %><br>
 
 
 </ul>
