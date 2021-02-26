@@ -5,9 +5,8 @@ class MedicationsController < ApplicationController
         require_login
         user = User.find_by_id(session[:user_id])
         @medications = user.medications
-        # @medications = Medication.all
         erb :"/medications/index"   
-      end
+    end
 
     get "/medications/new" do
       require_login

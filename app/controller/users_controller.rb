@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     
   get "/login" do
     redirect_logged_in
-    erb :"/users/index"
+    erb :"/users/login"
   end
 
 
@@ -15,9 +15,7 @@ class UsersController < ApplicationController
     else
       @error = "Username or password is incorrect."
       redirect "/login"  
-    # else
-    #   @error = "Username or password not found, please sign up."
-    #   redirect "/users/signup"
+   
     end
   end 
   
