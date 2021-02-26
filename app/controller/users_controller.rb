@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id     
       redirect "/medications"
     else
-      @error = "Username or password is incorrect."
+      flash[:error] = "Username or password is incorrect."
       redirect "/login"  
    
     end

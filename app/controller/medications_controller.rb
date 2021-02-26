@@ -1,10 +1,10 @@
 class MedicationsController < ApplicationController
    
     get "/medications" do
-      
         require_login
-        user = User.find_by_id(session[:user_id])
-        @medications = user.medications
+        # binding.pry
+       
+        @medications = current.user.medications
         erb :"/medications/index"   
     end
 
@@ -14,23 +14,31 @@ class MedicationsController < ApplicationController
       erb :"/medications/new"
     end
 
-    post "/medications" do    
-        # binding.pry
-        @medications = Medication.create(name: params[:name], description: params[:description], 
+    post "/medications" do
+        require_login    
+        medication = Medication.create(name: params[:name], description: params[:description], 
         disease_states_name: params[:disease_states_name], brand: params[:brand], dose: params[:dose], quantity: params[:quantity],
         medication_id: params[:medication_id])
-        @medications.users << User.find_by_id(params[:user_id].to_i)
-        redirect "/medications"
+        if medication.valid?
+            medication.users << current_user
+            redirect "/medications"
+        else 
+            flash[:error] = medication.errors.full_messages.to_sentence
+            redirect '/medications/new'
+        end
     end
     
     private
 
     get '/medications/:id/edit' do
+      require_login 
       @medication = Medication.find_by(id: params[:id])
+      if @medication
       erb :"medications/edit"
     end
 
     patch '/medications/:id' do
+        require_login 
         medication = Medication.find_by(id: params[:id])
         medication.update(name: params[:name], description: params[:description], 
         disease_states_name: params[:disease_states_name], brand: params[:brand], dose: params[:dose], quantity: params[:quantity])
@@ -38,6 +46,7 @@ class MedicationsController < ApplicationController
     end
 
     delete '/medications/:id' do
+        require_login 
         medication = Medication.find_by(id: params[:id])
         medication.delete
         redirect "/medications"
