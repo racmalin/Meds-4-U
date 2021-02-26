@@ -13,13 +13,7 @@ cancer = DiseaseState.create!(name: 'cancer', disease_type: 'carcinoma', categor
 
 
 
-# medications = [
-#     {name: 'med name', med_type: 'med-type', brand: 'med brand', disease_state: '*' }
-# ]
 
-# medications.each do |m|
-#     Medication.create(m)
-# end
 
 
 
