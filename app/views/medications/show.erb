@@ -1,14 +1,23 @@
 
-    <h2> Medication</h2>
-        <input print="text" name="name">
-    <h2>Description</h2>
-        <input print="text" name="description">
-    <h2>Disease State</h2>
-        <input print="text" name="disease_states_name">
-    <h2>Brand</h2>
-        <input print="text" name="brand">
-    <h2>Dosage in mg</h2>
-        <input print="text" name="integer">
-    <h2>Quantity</h2>
-        <input print="text" name="quantity">
+    
 
+
+    <ul>
+       
+            <li><label> Med name: </label><%= @medication.name %></li>
+            <li><label> Med Desc: </label><%= @medication.description %></li>
+            <li><label> Type of Disease: </label><%= @medication.disease_states_name %></li>
+            <li><label> Med Brand: </label><%= @medication.brand %></li>
+            <li><label> Dosage in mg: </label><%= @medication.dose %></li>
+            <li><label> Quantity: </label><%= @medication.quantity %></li><br>
+        <br>
+
+
+    </ul>
+
+    <form action="/medications/<%= @medication.id %>/delete" method="POST">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete"> 
+    </form>
+
+    <a href="/medications/<%=@medication.id%>/edit">Edit</a>

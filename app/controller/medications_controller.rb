@@ -27,27 +27,38 @@ class MedicationsController < ApplicationController
             redirect '/medications/new'
         end
     end
+
+    get "/medications/:id" do
+        require_login
+        @medication = Medication.find_by(id: params[:id])
+        if @medication
+          erb :"/medications/show"
+        else
+          redirect '/medications'
+        end
+    end
+    
     
 
-    get '/medications/edit' do
+    get '/medications/:id/edit' do
       require_login 
       @medication = Medication.find_by(id: params[:id])
-      if medication = current_user
-      redirect '/medications/edit'
-    end
+      if @medication
+        erb :"/medications/edit"
+      end
     end
 
-    patch '/medications/:id' do
+    patch '/medications/:id/edit' do
         require_login 
         medication = Medication.find_by(id: params[:id])
         medication.update(dose: params[:dose], quantity: params[:quantity])
         redirect "/medications/#{medication.id}"
     end
 
-    delete '/medications/:id' do
+    delete '/medications/:id/delete' do
         require_login 
-        medication = Medication.find_by(id: params[:id])
-        medication.delete
+        @medication = Medication.find_by(id: params[:id])
+        @medication.delete
         redirect "/medications"
     end
     

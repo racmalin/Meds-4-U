@@ -7,6 +7,14 @@
     <title>Medication Catalogger App</title>
 </head>
 <body>
+    <div>
+      <div><a href="/medications">Medication List</a></div>
+      <div><a href="/medications/new">Add a Medication</a></div>
+      <% if session[:user_id] %>
+        <div><a href="/logout">Logout</a></div>
+      <%end%>
+    </div>
+
     <h1>Meds 4 U App</h1>
     <% if flash[:error]  %>
     <p><%= flash[:error] %></p>

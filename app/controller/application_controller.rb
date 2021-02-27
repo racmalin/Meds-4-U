@@ -19,19 +19,6 @@ class ApplicationController < Sinatra::Base
     require_login 
     erb :"users/login"
   end
-  
-  post 'medications' do
-    require_login 
-    erb :"medications/index"
-  end
-
-  get '/medications/edit' do
-    require_login 
-    @medication = Medication.find_by(id: params[:id])
-    if @medication = current_user
-    'medications/edit'
-  end
-  end
  
 
   private

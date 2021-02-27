@@ -1,16 +1,12 @@
-<h2><%= current_user.username %> Medications</h2>
+<h2><%= current_user.username + 's' %> Medications</h2>
 
 
 <h2><a href="/medications/new">Add New Medications</a></h2><br>
 
 <ul>
     <% @medications.each do |m| %>
-        <li><label> Med name: </label><%= m.name %></li>
-        <li><label> Med Desc: </label><%= m.description %></li>
-        <li><label> Type of Disease: </label><%= m.disease_states_name %></li>
-        <li><label> Med Brand: </label><%= m.brand %></li>
-        <li><label> Dosage in mg: </label><%= m.dose %></li>
-        <li><label> Quantity: </label><%= m.quantity %></li><br>
+        <li><label> Med name: </label><a href="/medications/<%= m.id %>"><%= m.name %></a></li>
+        
     <% end %><br>
 
 
