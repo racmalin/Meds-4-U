@@ -1,19 +1,19 @@
-<h1>Edit a Medication</h1>
-<%= @error %>
+<h2>Edit a Medication</h2>
+
 
 <form action="/medications/<%=@medication.id%>/edit" method="POST">
   <input type="hidden" name="_method" value="patch">
-  <label>Workout Date:</label>
+  <label>Medication:</label>
   <input type="text" name="medication">
 
   <br>
   <br>
    <% @medications.each do |m| %>
     <li>
-    <input type="text" name="medication" value=<%= m.name %>>
+    <input type="text" name="medication" value=<%= m.dose, m.quantity %>>
     </li>
        
-  <%end%>
+  <% end %>
 
 <input type="submit" value=" Submit Change ">
 </form>

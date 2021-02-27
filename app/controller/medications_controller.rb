@@ -4,7 +4,7 @@ class MedicationsController < ApplicationController
         require_login
         # binding.pry
        
-        @medications = current.user.medications
+        @medications = current_user.medications
         erb :"/medications/index"   
     end
 
@@ -28,20 +28,19 @@ class MedicationsController < ApplicationController
         end
     end
     
-    private
 
-    get '/medications/:id/edit' do
+    get '/medications/edit' do
       require_login 
       @medication = Medication.find_by(id: params[:id])
-      if @medication
-      erb :"medications/edit"
+      if medication = current_user
+      redirect '/medications/edit'
+    end
     end
 
     patch '/medications/:id' do
         require_login 
         medication = Medication.find_by(id: params[:id])
-        medication.update(name: params[:name], description: params[:description], 
-        disease_states_name: params[:disease_states_name], brand: params[:brand], dose: params[:dose], quantity: params[:quantity])
+        medication.update(dose: params[:dose], quantity: params[:quantity])
         redirect "/medications/#{medication.id}"
     end
 
@@ -51,5 +50,7 @@ class MedicationsController < ApplicationController
         medication.delete
         redirect "/medications"
     end
+    
+  
 
 end
