@@ -12,3 +12,7 @@ These instructions will get a copy of the project up and running on your local m
 Sinatra - The web framework
 
 ActiveRecord - Database Management
+
+# Aknoledgements
+I would like to thank my Co-Hort leads, Laura and Mateo who were implemental in my learning process!! 
+I would also like to thank my son Jordon Terry, who I think would make an excellent candidate as a teacher for Flatiron!!
