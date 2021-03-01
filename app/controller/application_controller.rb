@@ -23,8 +23,10 @@ class ApplicationController < Sinatra::Base
 
   private
 
+  helpers do
   def logged_in?
     !!session[:user_id]
+  end
   end
 
   def current_user
