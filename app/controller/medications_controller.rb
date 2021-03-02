@@ -48,14 +48,14 @@ class MedicationsController < ApplicationController
       end
     end
 
-    patch '/medications/:id/edit' do
+    patch '/medications/:id' do
         require_login 
         medication = Medication.find_by(id: params[:id])
         medication.update(dose: params[:dose], quantity: params[:quantity])
         redirect "/medications/#{medication.id}"
     end
 
-    delete '/medications/:id/delete' do
+    delete '/medications/:id' do
         require_login 
         @medication = Medication.find_by(id: params[:id])
         @medication.delete

@@ -1,7 +1,7 @@
 <h2>Edit a Medication</h2>
 
 
-<form action="/medications/<%=@medication.id%>/edit" method="POST">
+<form action="/medications/<%=@medication.id%>"method="POST">
   <input type="hidden" name="_method" value="patch">
   <label>Medication: <%=@medication.name%></label>
 
