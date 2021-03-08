@@ -2,8 +2,6 @@ class MedicationsController < ApplicationController
    
     get "/medications" do
         require_login
-        # binding.pry
-       
         @medications = current_user.medications
         erb :"/medications/index"   
     end

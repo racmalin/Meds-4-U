@@ -18,4 +18,5 @@ gem 'bcrypt'
 gem 'tux'
 gem "rails"
 gem "sinatra-flash"
+gem "rack_csrf"
 
