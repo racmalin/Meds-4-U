@@ -16,7 +16,7 @@ class MedicationsController < ApplicationController
         require_login    
         medication = Medication.create(name: params[:name], description: params[:description], 
         disease_states_name: params[:disease_states_name], brand: params[:brand], dose: params[:dose], quantity: params[:quantity],
-        medication_id: params[:medication_id])
+        )
         if medication.valid?
             medication.users << current_user
             redirect "/medications"
