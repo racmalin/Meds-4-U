@@ -4,7 +4,6 @@ class CreateMedications < ActiveRecord::Migration[5.2]
       t.string "name"
       t.string "type"
       t.string "brand"
-      t.integer "medication_id"
       t.integer "dose"
       t.integer "quantity"
       t.text "description"
