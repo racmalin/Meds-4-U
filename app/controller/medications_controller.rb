@@ -17,6 +17,7 @@ class MedicationsController < ApplicationController
         medication = Medication.create(name: params[:name], description: params[:description], 
         disease_states_name: params[:disease_states_name], brand: params[:brand], dose: params[:dose], quantity: params[:quantity],
         )
+        medication.owner = current_user
         if medication.valid?
             medication.users << current_user
             redirect "/medications"
@@ -41,14 +42,23 @@ class MedicationsController < ApplicationController
     get '/medications/:id/edit' do
       require_login 
       @medication = Medication.find_by(id: params[:id])
-      if @medication
+      if @medication.owner == current_user
         erb :"/medications/edit"
+      else
+        flash[:error] = "Unauthorized user!"
+          erb :"/medications/show"
       end
     end
 
     patch '/medications/:id' do
         require_login 
         medication = Medication.find_by(id: params[:id])
+        if @medication.owner == current_user
+          erb :"/medications/edit"
+        else
+          flash[:error] = "Unauthorized user!"
+            erb :"/medications/show"
+        end
         medication.update(dose: params[:dose], quantity: params[:quantity])
         redirect "/medications/#{medication.id}"
     end
@@ -56,10 +66,13 @@ class MedicationsController < ApplicationController
     delete '/medications/:id' do
         require_login 
         @medication = Medication.find_by(id: params[:id])
+        if @medication.owner == current_user
+          erb :"/medications/edit"
+        else
+          flash[:error] = "Unauthorized user!"
+            erb :"/medications/show"
+        end
         @medication.delete
         redirect "/medications"
     end
-    
-  
-
 end
