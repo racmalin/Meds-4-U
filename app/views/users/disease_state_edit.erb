@@ -1,0 +1,13 @@
+<h2>Edit <%=@disease_state.medication.name %></h2>
+
+
+<form action="/users/medications/<%=@disease_state.id%>"method="POST">
+  <input type="hidden" name="_method" value="patch">
+  <label for="dose">Dose</label>
+        <input type="text" name="dose" id="dose" value="<%=@disease_state.dose%>">
+    <label for="quantity">Quantity</label>
+        <input type="text" name="quantity" id="quantity" value="<%=@disease_state.quantity%>">
+    
+
+  <input type="submit" value=" Submit Change ">
+</form>

@@ -82,3 +82,5 @@ Seeds File 1st Draft
  medications.each do |m|
      Medication.create(m)
  end
+
+  dose: params[:dose], quantity: params[:quantity]

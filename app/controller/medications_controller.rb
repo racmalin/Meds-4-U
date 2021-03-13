@@ -14,13 +14,15 @@ class MedicationsController < ApplicationController
 
     post "/medications" do
         require_login    
-        medication = Medication.create(name: params[:name], description: params[:description], 
-        disease_states_name: params[:disease_states_name], brand: params[:brand], dose: params[:dose], quantity: params[:quantity],
-        )
+        medication = Medication.new(name: params[:name], description: params[:description], 
+        disease_states_name: params[:disease_states_name], brand: params[:brand])
         medication.owner = current_user
-        if medication.valid?
-            medication.users << current_user
-            redirect "/medications"
+        if medication.save
+          if !params[:dose].blank?
+            DiseaseState.create(dose: params[:dose], quantity: params[:quantity], medication: medication, user: current_user)
+            # medication.users << current_user
+          end
+          redirect "/medications"
         else 
             flash[:error] = medication.errors.full_messages.to_sentence
             redirect '/medications/new'
@@ -53,26 +55,35 @@ class MedicationsController < ApplicationController
     patch '/medications/:id' do
         require_login 
         medication = Medication.find_by(id: params[:id])
-        if @medication.owner == current_user
-          erb :"/medications/edit"
+        if medication.owner == current_user
+          if medication.update(name: params[:name], description: params[:description], 
+            disease_states_name: params[:disease_states_name], brand: params[:brand])
+            redirect "/medications/#{medication.id}"
+          else 
+            flash[:error] = medication.errors.full_messages.to_sentence
+            redirect "/medications/#{medication.id}/edit"
+          end
         else
           flash[:error] = "Unauthorized user!"
-            erb :"/medications/show"
+           redirect "/medications/#{medication.id}"
         end
-        medication.update(dose: params[:dose], quantity: params[:quantity])
-        redirect "/medications/#{medication.id}"
     end
 
     delete '/medications/:id' do
         require_login 
-        @medication = Medication.find_by(id: params[:id])
-        if @medication.owner == current_user
-          erb :"/medications/edit"
+        medication = Medication.find_by(id: params[:id])
+        if medication.owner == current_user
+          if medication.destroy
+            redirect "/medications"
+          else
+            flash[:error] = medication.errors.full_messages.to_sentence
+            redirect "/medications/#{medication.id}"
+          end
+          
         else
           flash[:error] = "Unauthorized user!"
-            erb :"/medications/show"
+          redirect "/medications/#{medication.id}"
+            
         end
-        @medication.delete
-        redirect "/medications"
     end
 end

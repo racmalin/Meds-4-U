@@ -7,12 +7,13 @@
         <input type="text" name="disease_states_name">
      <h2> Brand </h2>
         <input type="text" name="brand">
+        <h2>If this is a medication that you are using, please fill in the following fields</h2>
      <h2> Dosage </h2>
-        <input type="text" name="dose">
+        <input type="text" name="dose" required>
      <h2> Quantity </h2>
         <input type="text" name="quantity">
 
-        <input type="hidden" name="user_id" value=<%=session[:user_id]%>>
+      
 
         <input type="submit" value="add">
         

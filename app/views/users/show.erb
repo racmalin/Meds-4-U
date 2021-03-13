@@ -1,0 +1,19 @@
+<h1> Welcome <%current_user.username %></h1>
+
+<ul>
+    <% @medications.each do |m| %>
+        <li><label> Med name: </label><a href="/users/medications/<%= m.medication.id %>"><%= m.medication.name %></a>
+         <label> Med dose: </label><p><%=m.dose%></p>
+         <label> Med quantity: </label><p><%=m.quantity%></p>
+         <form action="/medications/<%= m.medication.id %>"method="POST">
+            <input type="hidden" name="_method" value="delete">
+            <input class= "btn btn-danger" type="submit" value="Delete"> 
+        </form>
+
+        <a class= "btn btn-success" href="/users/medications/<%=m.medication.id%>/edit">Edit</a>
+        </li>
+        
+    <% end %><br>
+
+
+</ul>

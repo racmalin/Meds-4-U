@@ -5,16 +5,16 @@
             <li><label> Med Desc: </label><%= @medication.description %></li>
             <li><label> Type of Disease: </label><%= @medication.disease_states_name %></li>
             <li><label> Med Brand: </label><%= @medication.brand %></li>
-            <li><label> Dosage in mg: </label><%= @medication.dose %></li>
-            <li><label> Quantity: </label><%= @medication.quantity %></li><br>
+            
         <br>
 
 
     </ul>
-
+    <% if current_user == @medication.owner%>
     <form action="/medications/<%= @medication.id %>"method="POST">
         <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Delete"> 
+        <input class= "btn btn-danger" type="submit" value="Delete"> 
     </form>
 
-    <a href="/medications/<%=@medication.id%>/edit">Edit</a>
+    <a class= "btn btn-success" href="/medications/<%=@medication.id%>/edit">Edit</a>
+<% end %>

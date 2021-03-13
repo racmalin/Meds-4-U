@@ -19,7 +19,59 @@ class UsersController < ApplicationController
     end
   end 
   
-  
+  get "/users/:id" do
+    require_login
+    user = User.find_by(id: params[:id])
+    if user == current_user
+      @medications = current_user.disease_states
+      erb :"/users/show"
+    else
+      redirect "/medications"
+    end
+  end
+
+  get "/users/medications/:id/edit" do
+    require_login
+    @disease_state = DiseaseState.find_by(medication_id: params[:id], user: current_user)
+    if @disease_state 
+      erb :"users/disease_state_edit"
+    else
+      redirect "/users/#{current_user.id}"
+    end
+  end
+
+  patch '/users/medications/:id' do
+    require_login 
+    disease_state = DiseaseState.find_by(medication_id: params[:id], user: current_user)
+    if disease_state
+      if disease_state.update(dose: params[:dose], quantity: params[:quantity])
+        redirect "/users/#{current_user.id}"
+      else 
+        flash[:error] = disease_state.errors.full_messages.to_sentence
+        redirect "/users/medications/#{medication.id}/edit"
+      end
+    else
+      flash[:error] = "Unauthorized user!"
+      redirect "/users/#{current_user.id}"
+    end
+end
+
+delete '/medications/:id' do
+  require_login 
+  disease_state = DiseaseState.find_by(medication_id: params[:id], user: current_user)
+  if disease_state
+    if disease_state.destroy
+      redirect "/users/#{current_user.id}"
+    else 
+      flash[:error] = disease_state.errors.full_messages.to_sentence
+      redirect "/users/#{current_user.id}"
+    end
+  else
+    flash[:error] = "Unauthorized user!"
+    redirect "/users/#{current_user.id}"
+  end
+end
+
 
 
   

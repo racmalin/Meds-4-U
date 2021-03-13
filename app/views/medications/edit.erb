@@ -3,16 +3,14 @@
 
 <form action="/medications/<%=@medication.id%>"method="POST">
   <input type="hidden" name="_method" value="patch">
-  <label>Medication: <%=@medication.name%></label>
-
-  <h2> Dosage </h2>
-        <input type="text" name="dose">
-
-  <br>
-  <br>   
-    
-  <h2> Quantity </h2>
-      <input type="text" name="quantity"> 
+  <label for="name">Medication</label>
+        <input type="text" name="name" id="name" value="<%=@medication.name%>">
+    <label for="description">Description</label>
+        <input type="text" name="description" id="description" value="<%=@medication.description%>">
+    <label for="disease_states_name">Disease States Name</label>
+        <input type="text" name="disease_states_name" id="disease_states_name" value="<%=@medication.disease_states_name%>">
+    <label for="brand">Brand</label>
+        <input type="text" name="brand" id="brand" value="<%=@medication.brand%>">
 
   <input type="submit" value=" Submit Change ">
 </form>
