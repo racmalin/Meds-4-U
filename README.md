@@ -4,8 +4,8 @@ Is an interactive application where a person can signup and create an user accou
 # Getting Started
 These instructions will get a copy of the project up and running on your local machine for development purposes. 
 * Fork and clone this repo to your local environment.
-* Run bundle install in your terminal
-* Type shotgun into your terminal
+* Run `bundle install` in your terminal
+* Type `shotgun` into your terminal
 * In your browser, visit localhost:9393, or the provided http: address given below shotgun in your terminal.
 
 # Built With
